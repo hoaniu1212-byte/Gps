@@ -1,0 +1,16 @@
+<h2>Tạo link</h2>
+<input id="url" placeholder="Dán link TikTok / Drive">
+<button onclick="create()">Tạo</button>
+<p id="out"></p>
+
+<script>
+function create() {
+  fetch("/create", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ url: url.value })
+  })
+  .then(r => r.json())
+  .then(d => out.innerText = location.origin + d.link);
+}
+</script>
